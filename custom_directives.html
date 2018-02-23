@@ -6,16 +6,47 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Custom Directives</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	   crossorigin="anonymous">
+
 </head>
 
 <body ng-controller="tryController">
-	<div>{{name || 'snap! its broken'}}</div>
+	<div attribute-Directive></div>
+	<div class="class-Directive"></div>
+	<element-Directive></element-Directive>
+	<!-- directive: ng-commentDirective -->
+	<h1>{{name || 'snap! its broken'}}</h1>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script>
 		angular.module('tryApp', [])
 			.controller('tryController', function ($scope) {
 				$scope.name = 'ical47';
+			})
+			.directive('attributeDirective', function () {
+				return {
+					restrict: 'A',
+					template: '<div class="p-3 mb-3 bg-primary text-white">Attribute directive</div>'
+				}
+			})
+			.directive('classDirective', function () {
+				return {
+					restrict: 'C',
+					template: '<div class="p-3 mb-3 bg-secondary text-white">Class directive</div>'
+				}
+			})
+			.directive('elementDirective', function () {
+				return {
+					restrict: 'E',
+					template: '<div class="p-3 mb-3 bg-success text-white">Element directive</div>'
+				}
+			})
+			.directive('commentDirective', function () {
+				return {
+					restrict: 'M',
+					template: ''
+				}
 			});
 	</script>
 </body>
